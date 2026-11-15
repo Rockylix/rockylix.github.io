@@ -1,0 +1,25 @@
+---
+import { getCollection } from "astro:content";
+import Site from "../../layouts/Site.astro";
+import { formatDate } from "../../dates";
+
+const entries = (await getCollection("blog")).sort((a, b) => b.data.date.localeCompare(a.data.date) || a.data.slug.localeCompare(b.data.slug));
+---
+<Site title="Blog · Xinling Xie" description="Technical notes by Xinling Xie on GPU inference and ML systems." section="blog">
+  <section class="blog-index" aria-labelledby="blog-title">
+    <h1 id="blog-title">Blog</h1>
+    {entries.length ? (
+      <ol class="entry-list">
+        {entries.map(({ data }) => (
+          <li class="entry">
+            <time datetime={data.date}>{formatDate(data.date)}</time>
+            <div lang={data.lang}>
+              <h2><a href={`/blog/${data.slug}/`}>{data.title}</a></h2>
+              <p>{data.summary}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    ) : <p class="empty-blog">No posts yet.</p>}
+  </section>
+</Site>

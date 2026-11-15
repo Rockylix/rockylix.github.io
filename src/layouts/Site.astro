@@ -1,0 +1,36 @@
+---
+import "../site.css";
+
+interface Props {
+  title: string;
+  description: string;
+  section: "home" | "blog";
+  lang?: "en" | "zh";
+}
+
+const { title, description, section, lang = "en" } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+---
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+  </head>
+  <body>
+    <a class="skip-link" href="#main" lang="en">Skip to content</a>
+    <header class="shell site-header" lang="en">
+      <nav aria-label="Primary">
+        <a class="home-link" href="/" aria-current={section === "home" ? "page" : undefined}>Home</a>
+        <a href="/blog/" aria-current={section === "blog" ? "page" : undefined}>Blog</a>
+        <a href="https://github.com/Rockylix">GitHub<span aria-hidden="true"> ↗</span></a>
+      </nav>
+    </header>
+    <main class="shell" id="main">
+      <slot />
+    </main>
+  </body>
+</html>

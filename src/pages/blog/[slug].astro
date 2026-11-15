@@ -1,0 +1,27 @@
+---
+import { getCollection, render, type CollectionEntry } from "astro:content";
+import Site from "../../layouts/Site.astro";
+import { formatDate } from "../../dates";
+
+export async function getStaticPaths() {
+  const entries = await getCollection("blog");
+  return entries.map((entry) => ({ params: { slug: entry.data.slug }, props: { entry } }));
+}
+
+interface Props { entry: CollectionEntry<"blog"> }
+
+const { entry } = Astro.props;
+const { title, summary, date, lang } = entry.data;
+const { Content } = await render(entry);
+---
+<Site title={`${title} · Xinling Xie`} description={summary} section="blog" lang={lang}>
+  <article class="post">
+    <a class="back-link" lang="en" href="/blog/"><span aria-hidden="true">←</span> All posts</a>
+    <header class="post-heading">
+      <time datetime={date}>{formatDate(date, lang)}</time>
+      <h1>{title}</h1>
+      <p>{summary}</p>
+    </header>
+    <div class="prose"><Content /></div>
+  </article>
+</Site>
