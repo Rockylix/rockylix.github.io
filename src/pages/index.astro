@@ -5,22 +5,24 @@ const news = [
   {
     date: "2026-09-30",
     label: "Sep 2026",
-    title: "Sparse-WAM preprint",
-    description: "Action-guided token selection for faster world action model inference.",
+    title: "Sparse-WAM: Accelerating World Action Models via Action-Guided Sparse Imagination",
+    description: "Selects future-frame tokens using action-to-future attention and reuses the selection across sparse denoising steps.",
     href: "https://arxiv.org/abs/2609.38984",
     linkLabel: "Paper",
-    image: "/images/projects/sparse-wam.webp",
-    imageAlt: "A dense token grid reduced to a sparse set of action-relevant tokens",
+    image: "/images/projects/sparse-wam-architecture.webp",
+    imageAlt: "Sparse-WAM overview showing token selection at a full step and reuse during sparse steps",
+    imageHeight: 743,
   },
   {
     date: "2025",
-    label: "2025",
-    title: "FPT25 FPGA activation function accelerator",
-    description: "Open-source Verilog for a reconfigurable datapath that supports multiple activation functions.",
+    label: "FPT 2025",
+    title: "Reconfigurable Dataflow Architecture for Multiple Activation Functions on FPGA",
+    description: "Composes shared BF16 operators into reconfigurable pipelines for multiple activation functions.",
     href: "https://github.com/FPGA-acceleration/FPT25-Activation-Function-Accelerator",
     linkLabel: "Code",
-    image: "/images/projects/fpt25.webp",
-    imageAlt: "Input routed through a configurable array of FPGA operators to the output",
+    image: "/images/projects/fpt25-architecture.webp",
+    imageAlt: "FPGA dataflow with memory, interconnect, shared operators, and output multiplexing",
+    imageHeight: 933,
   },
 ];
 ---
@@ -35,7 +37,7 @@ const news = [
       </ul>
       <p class="research-interest">I’m interested in GPU inference, hardware acceleration, and efficient systems for robotics.</p>
     </div>
-    <img class="profile-portrait" src="/images/xinling-xie.webp" width="432" height="798" alt="Xinling Xie by the sea" />
+    <img class="profile-portrait" src="/images/xinling-xie-full.webp" width="432" height="798" alt="Xinling Xie by the sea" />
   </section>
 
   <section class="news" aria-labelledby="news-heading">
@@ -43,13 +45,15 @@ const news = [
     <ol class="entry-list">
       {news.slice(0, 5).map((item) => (
         <li class="entry">
-          <time datetime={item.date}>{item.label}</time>
-          <div>
+          <a class="news-figure" href={item.image} aria-label={`Open architecture diagram for ${item.title}`}>
+            <img src={item.image} alt={item.imageAlt} width="1320" height={item.imageHeight} />
+          </a>
+          <div class="news-details">
+            <time datetime={item.date}>{item.label}</time>
             <h3>{item.title}</h3>
             <p>{item.description}</p>
             <a class="project-link" href={item.href} aria-label={`${item.linkLabel} for ${item.title}`}>{item.linkLabel}<span aria-hidden="true"> ↗</span></a>
           </div>
-          <img class="news-thumbnail" src={item.image} alt={item.imageAlt} width="432" height="288" />
         </li>
       ))}
     </ol>

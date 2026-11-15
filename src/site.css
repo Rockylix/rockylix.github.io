@@ -68,19 +68,28 @@ nav a[aria-current], nav a:hover { color: var(--accent); text-decoration: underl
 .entry a { text-decoration: none; }
 .entry a:hover { text-decoration: underline; }
 .entry p { color: var(--muted); margin-top: .3rem; font-size: .94rem; }
-.profile-portrait,
-.news-thumbnail {
+.profile-portrait {
   display: block;
   width: min(144px, 100%);
   height: auto;
+  margin-block-start: 1rem;
 }
 
-.profile-portrait { border-radius: .6rem; margin-block-start: 1rem; }
-.news-thumbnail { border-radius: .3rem; }
+.news .entry { grid-template-columns: minmax(0, 1fr); padding-block: 1.2rem; }
+.news-figure { display: block; width: min(224px, 100%); }
+.news-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: white;
+  outline: 1px solid var(--line);
+  outline-offset: -1px;
+}
+.news-details time { display: block; margin-bottom: .22rem; }
 .news .project-link {
   display: inline-block;
+  margin-top: .35rem;
   color: var(--accent);
-  margin-top: .32rem;
   font-size: .84rem;
   text-decoration: underline;
 }
@@ -94,7 +103,7 @@ nav a[aria-current], nav a:hover { color: var(--accent); text-decoration: underl
   }
 
   .profile-portrait { margin-block-start: .35rem; }
-  .news .entry { grid-template-columns: 6rem minmax(0, 1fr) 144px; align-items: start; }
+  .news .entry { grid-template-columns: 224px minmax(0, 1fr); gap: 1.5rem; align-items: center; }
 }
 
 .blog-index { padding-top: 3.5rem; }
