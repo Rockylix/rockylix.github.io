@@ -70,7 +70,34 @@ nav a[aria-current], nav a:hover { color: var(--accent); text-decoration: underl
 .entry a { text-decoration: none; }
 .entry a:hover { text-decoration: underline; }
 .entry p { color: var(--muted); margin-top: .3rem; font-size: .94rem; }
-.external-mark { color: var(--accent); white-space: nowrap; }
+.profile-portrait,
+.news-thumbnail {
+  display: block;
+  width: min(144px, 100%);
+  height: auto;
+}
+
+.profile-portrait { border-radius: .6rem; margin-block-start: 1rem; }
+.news-thumbnail { border-radius: .3rem; }
+.news .project-link {
+  display: inline-block;
+  color: var(--accent);
+  margin-top: .32rem;
+  font-size: .84rem;
+  text-decoration: underline;
+}
+
+@media (min-width: 760px) {
+  .profile {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 144px;
+    gap: 2.15rem;
+    align-items: start;
+  }
+
+  .profile-portrait { margin-block-start: .35rem; }
+  .news .entry { grid-template-columns: 6rem minmax(0, 1fr) 144px; align-items: start; }
+}
 
 .blog-index { padding-top: 3.5rem; }
 .blog-index h1 { font-size: clamp(3.05rem, 7vw, 4.6rem); }

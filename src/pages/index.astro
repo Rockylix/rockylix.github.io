@@ -8,6 +8,9 @@ const news = [
     title: "Sparse-WAM preprint",
     description: "Action-guided token selection for faster world action model inference.",
     href: "https://arxiv.org/abs/2609.38984",
+    linkLabel: "Paper",
+    image: "/images/projects/sparse-wam.webp",
+    imageAlt: "A dense token grid reduced to a sparse set of action-relevant tokens",
   },
   {
     date: "2025",
@@ -15,21 +18,27 @@ const news = [
     title: "FPT25 FPGA activation function accelerator",
     description: "Open-source Verilog for a reconfigurable datapath that supports multiple activation functions.",
     href: "https://github.com/FPGA-acceleration/FPT25-Activation-Function-Accelerator",
+    linkLabel: "Code",
+    image: "/images/projects/fpt25.webp",
+    imageAlt: "Input routed through a configurable array of FPGA operators to the output",
   },
 ];
 ---
 <Site title="Xinling Xie" description="Xinling Xie studies microelectronics at Nanjing University and works on GPU inference, hardware acceleration, and robotics." section="home">
   <section class="profile" aria-labelledby="name">
-    <div class="profile-name">
-      <h1 id="name">Xinling Xie</h1>
-      <p class="name-cn" lang="zh">谢欣凌</p>
+    <div>
+      <div class="profile-name">
+        <h1 id="name">Xinling Xie</h1>
+        <p class="name-cn" lang="zh">谢欣凌</p>
+      </div>
+      <p class="education">Microelectronics undergraduate at Nanjing University.</p>
+      <ul class="honors" aria-label="Selected honors">
+        <li>China National Scholarship <time datetime="2026">(2026)</time></li>
+        <li>1st in FPT Design Competition <time datetime="2025">(2025)</time></li>
+      </ul>
+      <p class="research-interest">I’m interested in GPU inference, hardware acceleration, and efficient systems for robotics.</p>
     </div>
-    <p class="education">Microelectronics undergraduate at Nanjing University.</p>
-    <ul class="honors" aria-label="Selected honors">
-      <li>China National Scholarship <time datetime="2026">(2026)</time></li>
-      <li>1st in FPT Design Competition <time datetime="2025">(2025)</time></li>
-    </ul>
-    <p class="research-interest">I’m interested in GPU inference, hardware acceleration, and efficient systems for robotics.</p>
+    <img class="profile-portrait" src="/images/xinling-xie.webp" width="432" height="432" alt="Xinling Xie by the sea" />
   </section>
 
   <section class="news" aria-labelledby="news-heading">
@@ -39,9 +48,11 @@ const news = [
         <li class="entry">
           <time datetime={item.date}>{item.label}</time>
           <div>
-            <h3><a href={item.href}>{item.title}<span class="external-mark" aria-hidden="true"> ↗</span></a></h3>
+            <h3>{item.title}</h3>
             <p>{item.description}</p>
+            <a class="project-link" href={item.href} aria-label={`${item.linkLabel} for ${item.title}`}>{item.linkLabel}<span aria-hidden="true"> ↗</span></a>
           </div>
+          <img class="news-thumbnail" src={item.image} alt={item.imageAlt} width="432" height="288" />
         </li>
       ))}
     </ol>
